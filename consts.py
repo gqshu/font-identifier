@@ -42,7 +42,10 @@ TRAIN_TEST_IMAGES_DIR = 'train_test_images'
 # macos
 # FONT_FILE_DIRS = ['/System/Library/Fonts/', '/System/Library/Fonts/Supplemental/']
 # win
-FONT_FILE_DIRS = ['C:\\Windows\\Fonts']
+# FONT_FILE_DIRS = ['C:\\Windows\\Fonts']
+FONT_FILE_DIRS = [
+    './fonts',
+]
 
 # where to grab the Google Fonts, all of which are allowed
 GOOGLE_FONTS_DIR = "google_fonts"
