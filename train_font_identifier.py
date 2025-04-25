@@ -50,9 +50,10 @@ criterion = torch.nn.CrossEntropyLoss()
 
 # Define loss function and optimizer
 criterion = nn.CrossEntropyLoss()
-# if torch.cuda.is_available():
-#     # 使用gpu
-#     criterion = criterion.cuda()
+if torch.cuda.is_available():
+    print("Using GPU")
+    model = model.cuda()
+    criterion = criterion.cuda()
 optimizer = optim.Adam(model.parameters())
 
 
@@ -62,6 +63,8 @@ def train_step(model, data_loader, criterion, optimizer):
     total_loss = 0
     progress_bar = tqdm(data_loader, desc='Training', leave=True)
     for inputs, targets in progress_bar:
+        if torch.cuda.is_available():
+            inputs, targets = inputs.cuda(), targets.cuda()
         outputs = model(inputs)
         loss = criterion(outputs, targets)
         optimizer.zero_grad()
@@ -81,6 +84,8 @@ def validate(model, data_loader, criterion):
     progress_bar = tqdm(data_loader, desc='Validation', leave=False)
     with torch.no_grad():
         for inputs, targets in progress_bar:
+            if torch.cuda.is_available():
+                inputs, targets = inputs.cuda(), targets.cuda()
             outputs = model(inputs)
             loss = criterion(outputs, targets)
             total_loss += loss.item()
