@@ -8,6 +8,7 @@ from torchvision import datasets, models, transforms
 from tqdm import tqdm
 from util.image_util import filter_main
 from consts import TRAIN_TEST_IMAGES_DIR
+import argparse
 
 # Transformations for the image data
 data_transforms = transforms.Compose([
@@ -96,15 +97,30 @@ def validate(model, data_loader, criterion):
     return total_loss / len(data_loader), correct / len(data_loader.dataset)
 
 
-print(image_datasets['train'].classes)
-
-# Training loop with progress bar for epochs
-num_epochs = 50  # Replace with the number of epochs you'd like to train for
-for epoch in range(num_epochs):
-    print(f"Epoch {epoch + 1}/{num_epochs}")
-    train_loss = train_step(model, dataloaders["train"], criterion, optimizer)
-    val_loss, val_accuracy = validate(model, dataloaders["test"], criterion)
-    print(f"Train Loss: {train_loss:.4f}, Val Loss: {val_loss:.4f}, Val Accuracy: {val_accuracy:.4f}")
-
 # Save the model to disk
-torch.save(model.state_dict(), 'font_identifier_model.pth')
+def main():
+    parser = argparse.ArgumentParser(description="Train a font identifier model.")
+    parser.add_argument('--checkpoint', type=str, default=None, help="Path to a checkpoint file to resume training.")
+    args = parser.parse_args()
+
+    # Load checkpoint if provided
+    if args.checkpoint and os.path.exists(args.checkpoint):
+        print(f"Loading checkpoint from {args.checkpoint}")
+        model.load_state_dict(torch.load(args.checkpoint))
+        print("Checkpoint loaded successfully.")
+    print(image_datasets['train'].classes)
+
+    # Training loop with progress bar for epochs
+    num_epochs = 50  # Replace with the number of epochs you'd like to train for
+    for epoch in range(num_epochs):
+        print(f"Epoch {epoch + 1}/{num_epochs}")
+        train_loss = train_step(model, dataloaders["train"], criterion, optimizer)
+        val_loss, val_accuracy = validate(model, dataloaders["test"], criterion)
+        print(f"Train Loss: {train_loss:.4f}, Val Loss: {val_loss:.4f}, Val Accuracy: {val_accuracy:.4f}")
+
+    # Save the model to disk
+    torch.save(model.state_dict(), 'font_identifier_model.pth')
+    print("Model saved to 'font_identifier_model.pth'.")
+
+if __name__ == "__main__":
+    main()

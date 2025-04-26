@@ -64,8 +64,10 @@ def main():
     input_path = sys.argv[2]
 
     # Load the class names (replace with your actual class names)
-    class_names = os.listdir(os.path.join(TRAIN_TEST_IMAGES_DIR, "train"))  # Update this path if needed
-
+    # class_names = os.listdir(os.path.join(TRAIN_TEST_IMAGES_DIR, "train"))  # Update this path if needed
+    class_names = [
+      'AniMeMatrix-MB', 'Candara', 'Candarab', 'Candarai', 'Candaral', 'Candarali', 'Candaraz', 'CascadiaCode', 'CascadiaMono', 'Deng', 'Dengb', 'Dengl', 'Gabriola', 'Inkfree', 'LeelUIsl', 'LeelaUIb', 'LeelawUI', 'Nirmala', 'NirmalaB', 'NirmalaS', 'SF-Pro', 'SF-Pro-Text-Bold', 'SF-Pro-Text-RegularItalic', 'SegUIVar', 'SegoeIcons', 'SimsunExtG', 'SitkaVF', 'SitkaVF-Italic', 'YuGothB', 'YuGothL', 'YuGothM', 'YuGothR', 'arial', 'arialbd', 'arialbi', 'ariali', 'ariblk', 'bahnschrift', 'calibri', 'calibrib', 'calibrii', 'calibril', 'calibrili', 'calibriz', 'cambria', 'cambriab', 'cambriai', 'cambriaz', 'comic', 'comicbd', 'comici', 'comicz', 'consola', 'consolab', 'consolai', 'consolaz', 'constan', 'constanb', 'constani', 'constanz', 'corbel', 'corbelb', 'corbeli', 'corbell', 'corbelli', 'corbelz', 'cour', 'courbd', 'courbi', 'couri', 'ebrima', 'ebrimabd', 'framd', 'framdit', 'gadugi', 'gadugib', 'georgia', 'georgiab', 'georgiai', 'georgiaz', 'himalaya', 'holomdl2', 'impact', 'javatext', 'l', 'lucon', 'malgun', 'malgunbd', 'malgunsl', 'micross', 'mingliub', 'mmrtext', 'mmrtextb', 'monbaiti', 'msgothic', 'msjh', 'msjhbd', 'msjhl', 'msyh', 'msyhbd', 'msyhl', 'msyi', 'mvboli', 'ntailu', 'ntailub', 'pala', 'palab', 'palabi', 'palai', 'phagspa', 'phagspab', 'segoepr', 'segoeprb', 'segoesc', 'segoescb', 'segoeui', 'segoeuib', 'segoeuii', 'segoeuil', 'segoeuisl', 'segoeuiz', 'seguibl', 'seguibli', 'seguiemj', 'seguihis', 'seguili', 'seguisb', 'seguisbi', 'seguisli', 'seguisym', 'simfang', 'simhei', 'simkai', 'simsun', 'simsunb', 'sylfaen', 'symbol', 'tahoma', 'tahomabd', 'taile', 'taileb', 'times', 'timesbd', 'timesbi', 'timesi', 'trebuc', 'trebucbd', 'trebucbi', 'trebucit', 'verdana', 'verdanab', 'verdanai', 'verdanaz'
+    ]
     # Load the model
     num_classes = len(class_names)
     model = load_model(model_path, num_classes)
