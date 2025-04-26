@@ -1,29 +1,10 @@
 # number of images to generate per font
 IMAGES_PER_FONT = 50
 # allowlist of fonts to use
-FONT_ALLOWLIST = ["Arial",
-                  "Arial Black",
-                  "Arial Bold Italic",
-                  "Arial Bold",
-                  "Avenir",
-                  "Courier",
-                  "Helvetica",
-                  "Georgia",
-                  "Tahoma",
-                  "Tahoma Bold",
-                  "Times New Roman",
-                  "Times New Roman Bold",
-                  "Times New Roman Italic",
-                  "Times New Roman Bold Italic",
-                  "Trebuchet MS",
-                  "Trebuchet MS Bold",
-                  "Trebuchet MS Italic",
-                  "Trebuchet MS Bold Italic",
-                  "Verdana",
-                  "Verdana Bold",
-                  "Verdana Italic",
-                  "Verdana Bold Italic"
-                  ]
+FONT_ALLOWLIST = [
+    'SF-Pro-Text-RegularItalic',
+    'SF-Pro-Text-Bold',
+]
 
 FONT_EXCEPTS = [
     "mstmc",

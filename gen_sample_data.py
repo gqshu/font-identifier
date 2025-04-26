@@ -45,9 +45,7 @@ def main():
             if font_file.endswith('.ttf') or font_file.endswith('.ttc'):
                 font_path = os.path.join(font_dir, font_file)
                 font_name = font_file.split('.')[0]
-                # if font_name in FONT_ALLOWLIST:
-                #     font_files.append((font_path, font_name))
-                font_files.append((font_path, font_name))
+                if font_name in FONT_ALLOWLIST: font_files.append((font_path, font_name))
 
     print("font files: " + str(font_files))
 
